@@ -13,9 +13,9 @@ const router = Router();
 router.get("/", getAll);
 //obtener un mascota GET
 router.get("/:idMascota", getById);
-//obterner la especie de una mascota GET
-router.get("/especie/:especie", getBySpecies);
-//obtener todas las macotas por especie GET
+//obterner la especie de una mascota por GET
+router.get("/:idMascota/especie", getBySpecies);
+//obtener todas las mascotas por especie GET
 router.get("/especie/all/:especie", getAllBySpecies);
 //dar de alta una mascota POST
 router.post("/", insertPet);
