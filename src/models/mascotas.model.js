@@ -64,12 +64,56 @@ const AddNewPet = async ({
   return result.insertId;
 };
 const UnsuscribePet = async (idMascota) => {
-  const result = await db.execute(`delete from mascota where id = ?`, [idMascota]);
+  const [result] = await db.execute("delete from mascota where id = ?", [idMascota]);
+  console.log(result.affectedRows);
   if (result.affectedRows === 1) {
     return { status: true, message: `la mascota se ha borrado correctamente` };
   } else {
     return { status: false, message: `error al borrar, intentelo de nuevo` };
   }
 };
+const UpdatePetData = async (
+  idMascota,
+  {
+    id_dueno,
+    nombre,
+    especie,
+    raza = null,
+    sexo = null,
+    fecha_nacimiento = null,
+    peso_kg = null,
+    microchip = null,
+    color = null,
+    esterilizado = 0,
+    fecha_alta = null,
+    fecha_fallecimiento = null,
+    observaciones = null,
+  },
+) => {
+  const result = await db.execute(
+    `update mascota
+     set id_dueno = ?, nombre = ?, especie = ?, raza = ?, sexo = ?,
+         fecha_nacimiento = ?, peso_kg = ?, microchip = ?, color = ?,
+         esterilizado = ?, fecha_alta = ?, fecha_fallecimiento = ?, observaciones = ?
+     where id = ?`,
+    [
+      id_dueno,
+      nombre,
+      especie,
+      raza,
+      sexo,
+      fecha_nacimiento,
+      peso_kg,
+      microchip,
+      color,
+      esterilizado,
+      fecha_alta,
+      fecha_fallecimiento,
+      observaciones,
+      idMascota, // el id va el último, por el where
+    ],
+  );
+  return result;
+};
 
-export { selectAll, PetById, getSpecieById, getAllPetBySpecies, AddNewPet, UnsuscribePet };
+export { selectAll, PetById, getSpecieById, getAllPetBySpecies, AddNewPet, UnsuscribePet, UpdatePetData };

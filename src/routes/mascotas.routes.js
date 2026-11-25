@@ -20,7 +20,7 @@ router.get("/especie/all/:especie", getAllBySpecies);
 //dar de alta una mascota POST
 router.post("/", insertPet);
 //dar de baja una mascota DELETE
-router.delete("/:idMAscota", deletePet);
+router.delete("/:idMascota", deletePet);
 //actualizar datos de la mascota PUT/PATCH
 router.put("/:idMascota", editPet);
 
