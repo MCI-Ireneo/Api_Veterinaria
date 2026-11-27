@@ -43,7 +43,7 @@ const editPet = async (req, res) => {
     const mascota = await PetById(PetId);
     res.json(mascota);
   } else {
-    return { status: false, message: "No se ha podido actualizar la mascota" };
+    res.json({ status: false, message: "No se ha podido actualizar la mascota" });
   }
 };
 export { getAll, getAllBySpecies, getById, getBySpecies, insertPet, deletePet, editPet };
