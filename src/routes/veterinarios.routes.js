@@ -7,7 +7,7 @@ router.get("/", getAll);
 //Obtener Veterinario por id
 router.get("/:idVet", getById);
 //Obtener veterinarios por especialidad
-router.get("/veterinarios/:veterinarios", getBySpec);
+router.get("/veterinarios/:especialidad", getBySpec);
 //Dar de baja un veterinario
 router.delete("/:idVet", deleteVet);
 //Dar de alta un veterinario
